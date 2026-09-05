@@ -1,1 +1,85 @@
 @import "tailwindcss";
+
+:root {
+  --bg: #10110f;
+  --bg2: #191b17;
+  --fg: #ece8df;
+  --mut: #8d8a80;
+  --line: #2c2b26;
+  --acc: #c4a05a;
+  --acc-soft: #c4a05a22;
+  --live: #3ecf6a;
+  --live-soft: #3ecf6a22;
+}
+
+:root[data-theme="light"] {
+  --bg: #fbfbfa;
+  --bg2: #f3f3f0;
+  --fg: #141512;
+  --mut: #61635e;
+  --line: #e4e5e0;
+  --acc: #9a7424;
+  --acc-soft: #9a74241f;
+  --live: #1a8f44;
+  --live-soft: #1a8f441a;
+}
+
+@theme inline {
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-fg: var(--fg);
+  --color-mut: var(--mut);
+  --color-line: var(--line);
+  --color-acc: var(--acc);
+  --color-acc-soft: var(--acc-soft);
+  --color-live: var(--live);
+  --color-live-soft: var(--live-soft);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--acc);
+  color: var(--bg);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.75s ease-out both;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
