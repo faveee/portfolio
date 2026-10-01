@@ -11,13 +11,13 @@ export const site = {
     "Workflow Automation · Enterprise Systems · Full Stack Web Applications",
   location: "Lagos, Nigeria",
   availability:
-    "Open to full-time, part-time, contract roles & freelance work.",
+    "Open to full-time & freelance work.",
   headline: "I build the web apps that businesses actually depend on.",
   summary:
-    "Fullstack software engineer with experience building secure, scalable web applications in React, Next.js, TypeScript, and REST APIs. I have shipped authentication, RBAC, workflow automation, and dashboards across production banking and enterprise systems, and full-stack storefronts with payments, CMS, and order flows. I also mentor two women in the Tech4Dev Mentoring Community.",
+    "2+ years of experience shipping frontend products, with about 5 months of hands on full-stack product development. Currently mentoring two women through the Tech4Dev Mentorship Community.",
   email: "favourabatan@gmail.com",
   github: "https://github.com/faveee",
-  linkedin: "https://www.linkedin.com/in/abatanfavour/",
+  linkedin: "https://www.linkedin.com/in/favourabatan",
   resume:
     "https://drive.google.com/file/d/11slmLCojxXWJ8HbHzJIpbZcA07ZVwnPq/view",
 } as const;
@@ -28,6 +28,7 @@ export const nav = [
   { href: "#experience", label: "Experience" },
   { href: "#community", label: "Community" },
   { href: "#stack", label: "Stack" },
+  { href: "#ai-workflow", label: "AI workflow" },
   { href: "#contact", label: "Contact" },
 ] as const;
 
@@ -186,6 +187,35 @@ export const stack = [
     ],
   },
 ] as const;
+
+export const aiWorkflow = {
+  kicker: "AI workflow",
+  title: "Hands-on use of AI coding agents",
+  overview:
+    "I use AI coding agents daily on production systems — but as a force multiplier, not an authority. The pattern is always the same: give it a documented spec, verify its output against reality, and push back when the 'done' report does not match live testing.",
+  steps: [
+    {
+      index: "01",
+      title: "Large-codebase navigation, debugging & refactoring",
+      body: "I use agents to trace the real source of bugs across bigger codebases, isolate the root cause, and refactor confidently without losing runtime correctness.",
+    },
+    {
+      index: "02",
+      title: "Technical writing, documentation & walkthroughs",
+      body: "I rely on AI for research, competitor review, clear documentation, and shaping the implementation plan before writing production code.",
+    },
+    {
+      index: "03",
+      title: "Remote, async collaboration",
+      body: "I pair AI with structured specs, approval checkpoints, and live testing so work stays aligned across remote or asynchronous product delivery flows.",
+    },
+    {
+      index: "04",
+      title: "Workflow & tooling literacy + critique",
+      body: "I verify the actual codebase rather than trusting a summary, and I push back when an agent defaults to a preferred stack or claims a fix without matching the live result.",
+    },
+  ],
+} as const;
 
 export const mentoring = {
   kicker: "Community",

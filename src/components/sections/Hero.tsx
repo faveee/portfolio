@@ -1,8 +1,23 @@
-import { ArrowUpRight } from "@/components/ui/Icons";
+import { ArrowUpRight, SocialIcon } from "@/components/ui/Icons";
 import { site, socialLinks } from "@/lib/site";
 
 export function Hero() {
   const links = socialLinks();
+
+  const iconFor = (label: string) => {
+    switch (label) {
+      case "Email":
+        return "mail";
+      case "GitHub":
+        return "github";
+      case "LinkedIn":
+        return "linkedin";
+      case "Resume":
+        return "resume";
+      default:
+        return "resume";
+    }
+  };
 
   return (
     <section className="animate-rise py-12 sm:py-14">
@@ -32,7 +47,7 @@ export function Hero() {
       </p>
 
       {links.length > 0 ? (
-        <div className="flex flex-wrap items-center gap-6 font-mono text-[17px]">
+        <div className="flex flex-wrap items-center gap-5 font-mono text-[17px]">
           {links.map((link) => (
             <a
               key={link.label}
@@ -42,11 +57,12 @@ export function Hero() {
                 : {})}
               className={
                 link.label === "Email"
-                  ? "border-b border-acc pb-0.5 text-acc"
-                  : "inline-flex items-center gap-1 text-mut hover:text-acc"
+                  ? "inline-flex items-center gap-2 border-b border-acc pb-0.5 text-acc"
+                  : "inline-flex items-center gap-2 text-mut hover:text-acc"
               }
             >
-              {link.label.toLowerCase()}
+              <SocialIcon kind={iconFor(link.label)} />
+              <span>{link.label}</span>
               {link.href.startsWith("http") ? <ArrowUpRight /> : null}
             </a>
           ))}

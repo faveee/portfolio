@@ -2,13 +2,28 @@
 
 import { type FormEvent, useState } from "react";
 
-import { ArrowUpRight } from "@/components/ui/Icons";
+import { ArrowUpRight, SocialIcon } from "@/components/ui/Icons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { inquiryTypes, site, socialLinks } from "@/lib/site";
 
 export function Contact() {
   const [status, setStatus] = useState("");
   const links = socialLinks();
+
+  const iconFor = (label: string) => {
+    switch (label) {
+      case "Email":
+        return "mail";
+      case "GitHub":
+        return "github";
+      case "LinkedIn":
+        return "linkedin";
+      case "Resume":
+        return "resume";
+      default:
+        return "resume";
+    }
+  };
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -73,9 +88,9 @@ export function Contact() {
         </div>
 
         <label className="block">
-            <span className="mb-2 block font-mono text-[15px] tracking-wider text-mut uppercase">
-              What do you need?
-            </span>
+          <span className="mb-2 block font-mono text-[15px] tracking-wider text-mut uppercase">
+            What do you need?
+          </span>
           <select
             name="inquiry"
             required
@@ -94,9 +109,9 @@ export function Contact() {
         </label>
 
         <label className="block">
-            <span className="mb-2 block font-mono text-[15px] tracking-wider text-mut uppercase">
-              Project overview
-            </span>
+          <span className="mb-2 block font-mono text-[15px] tracking-wider text-mut uppercase">
+            Project overview
+          </span>
           <textarea
             name="message"
             required
@@ -124,7 +139,7 @@ export function Contact() {
           Or connect directly
         </p>
         {links.length > 0 ? (
-          <div className="flex flex-wrap gap-6 font-mono text-[17px]">
+          <div className="flex flex-wrap gap-5 font-mono text-[17px]">
             {links.map((link) => (
               <a
                 key={link.label}
@@ -132,9 +147,14 @@ export function Contact() {
                 {...(link.href.startsWith("http")
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="inline-flex items-center gap-1 text-mut hover:text-acc"
+                className={
+                  link.label === "Email"
+                    ? "inline-flex items-center gap-2 border-b border-acc pb-0.5 text-acc"
+                    : "inline-flex items-center gap-2 text-mut hover:text-acc"
+                }
               >
-                {link.label}
+                <SocialIcon kind={iconFor(link.label)} />
+                <span>{link.label}</span>
                 {link.href.startsWith("http") ? <ArrowUpRight /> : null}
               </a>
             ))}
