@@ -6,6 +6,7 @@ export type SiteLink = {
 export const site = {
   name: "Favour Abatan",
   monogram: "FA",
+  portrait: "/portrait.jpg",
   role: "Fullstack Software Engineer",
   specialties:
     "Workflow Automation · Enterprise Systems · Full Stack Web Applications",
@@ -14,22 +15,18 @@ export const site = {
     "Open to full-time & freelance work.",
   headline: "I build the web apps that businesses actually depend on.",
   summary:
-    "2+ years of experience shipping frontend products, with about 5 months of hands on full-stack product development. Currently mentoring two women through the Tech4Dev Mentorship Community.",
+    "2+ years of experience shipping frontend products, with about 6+ months of hands on full-stack product development. Currently mentoring two women through the Tech4Dev Mentorship Community.",
   email: "favourabatan@gmail.com",
   github: "https://github.com/faveee",
   linkedin: "https://www.linkedin.com/in/favourabatan",
   resume:
-    "https://drive.google.com/file/d/11slmLCojxXWJ8HbHzJIpbZcA07ZVwnPq/view",
+    "https://drive.google.com/file/d/1qSTDRJZlVeqqOGVx85mnIVkZiP4WL6Ca/view?usp=sharing",
 } as const;
 
 export const nav = [
-  { href: "#services", label: "Services" },
-  { href: "#work", label: "Work" },
-  { href: "#experience", label: "Experience" },
-  { href: "#community", label: "Community" },
-  { href: "#stack", label: "Stack" },
-  { href: "#ai-workflow", label: "AI workflow" },
-  { href: "#contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export const webDevelopment = {
@@ -130,21 +127,29 @@ export const experience = [
   },
 ] as const;
 
+export const stackTools = [
+  { name: "React", icon: "react" },
+  { name: "Next.js", icon: "nextjs" },
+  { name: "TypeScript", icon: "typescript" },
+  { name: "JavaScript", icon: "javascript" },
+  { name: "HTML5", icon: "html" },
+  { name: "CSS3", icon: "css" },
+  { name: "Tailwind CSS", icon: "tailwind" },
+  { name: "Node.js", icon: "node" },
+  { name: "Python", icon: "python" },
+  { name: "Git", icon: "git" },
+  { name: "GitHub", icon: "github" },
+  { name: "Docker", icon: "docker" },
+  { name: "Vite", icon: "vite" },
+  { name: "Sanity", icon: "sanity" },
+  { name: "Paystack", icon: "paystack" },
+  { name: "Resend", icon: "resend" },
+  { name: "Firebase", icon: "firebase" },
+  { name: "Vercel", icon: "vercel" },
+  { name: "Cursor", icon: "cursor" },
+] as const;
+
 export const stack = [
-  {
-    label: "Frontend",
-    items: [
-      "React.js",
-      "Next.js",
-      "TypeScript",
-      "JavaScript (ES6+)",
-      "HTML5",
-      "CSS3",
-      "Tailwind CSS",
-      "Responsive design",
-      "Component architecture",
-    ],
-  },
   {
     label: "Engineering",
     items: [
@@ -157,33 +162,19 @@ export const stack = [
       "Forms & validation",
       "File upload & download",
       "Performance optimization",
+      "Responsive design",
+      "Component architecture",
     ],
   },
   {
     label: "Backend & integrations",
     items: [
       "Serverless APIs",
-      "Node.js",
-      "Python",
       "Payment integration",
       "Webhooks",
       "Transactional email",
       "CMS integration",
       "API design",
-    ],
-  },
-  {
-    label: "Tools & platforms",
-    items: [
-      "Git",
-      "GitHub",
-      "Docker",
-      "Vite",
-      "Sanity CMS",
-      "Paystack",
-      "Resend",
-      "Firebase",
-      "Vercel",
     ],
   },
 ] as const;
@@ -192,7 +183,11 @@ export const aiWorkflow = {
   kicker: "AI workflow",
   title: "Hands-on use of AI coding agents",
   overview:
-    "I use AI coding agents daily on production systems — but as a force multiplier, not an authority. The pattern is always the same: give it a documented spec, verify its output against reality, and push back when the 'done' report does not match live testing.",
+    "I use AI coding agents daily on production systems, but as a force multiplier, not an authority. The pattern is always the same: give it a documented spec, verify its output against reality, and push back when the done report does not match live testing.",
+  tools: [
+    { name: "Cursor", icon: "cursor" },
+    { name: "Claude", icon: "claude" },
+  ] as const,
   steps: [
     {
       index: "01",
@@ -261,7 +256,7 @@ export function socialLinks(): SiteLink[] {
   const links: SiteLink[] = [];
 
   if (site.email) {
-    links.push({ label: "Email", href: `mailto:${site.email}` });
+    links.push({ label: site.email, href: `mailto:${site.email}` });
   }
   if (site.github) {
     links.push({ label: "GitHub", href: site.github });

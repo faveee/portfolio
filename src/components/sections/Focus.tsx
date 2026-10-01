@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { QuoteModal } from "@/components/sections/QuoteModal";
@@ -10,25 +11,25 @@ export function Focus() {
   const [quoteOpen, setQuoteOpen] = useState(false);
 
   return (
-    <section id="services" className="scroll-mt-24 border-t border-line py-12">
+    <section id="services" className="scroll-mt-24 py-12">
       <SectionHeading kicker="Services" title="What I can do for you" />
 
-      <article className="rounded-2xl border border-line bg-bg2 px-6 py-10 sm:px-10 sm:py-12">
-        <p className="mb-6 font-mono text-base tracking-widest text-acc">
+      <article className="rounded-2xl border border-line bg-bg2 px-6 py-7 sm:px-8 sm:py-8">
+        <p className="mb-3 font-mono text-sm tracking-widest text-acc">
           {webDevelopment.index}
         </p>
-        <h3 className="mb-5 font-serif text-[clamp(36px,5vw,52px)] leading-tight">
+        <h3 className="mb-3 font-serif text-3xl leading-snug">
           {webDevelopment.title}
         </h3>
-        <p className="mb-10 max-w-3xl text-[22px] leading-relaxed text-mut">
+        <p className="mb-5 max-w-3xl text-[20px] leading-relaxed text-mut">
           {webDevelopment.body}
         </p>
 
-        <div className="mb-10 border-t border-line pt-6">
+        <div className="mb-6 border-t border-line pt-4">
           <p className="font-mono text-[13px] tracking-widest text-mut uppercase">
             {webDevelopment.feeLabel}
           </p>
-          <p className="mt-2 font-serif text-3xl">{webDevelopment.fee}</p>
+          <p className="mt-1 font-serif text-2xl">{webDevelopment.fee}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -39,12 +40,12 @@ export function Focus() {
           >
             {webDevelopment.quoteCta}
           </button>
-          <a
-            href="#work"
+          <Link
+            href="/work"
             className="font-mono text-[15px] tracking-wider text-mut uppercase underline-offset-4 transition-colors hover:text-acc hover:underline"
           >
             or {webDevelopment.workCta.toLowerCase()}
-          </a>
+          </Link>
         </div>
       </article>
 

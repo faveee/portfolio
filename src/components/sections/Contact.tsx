@@ -1,29 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { type FormEvent, useState } from "react";
 
-import { ArrowUpRight, SocialIcon } from "@/components/ui/Icons";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { inquiryTypes, site, socialLinks } from "@/lib/site";
+import { SocialLinks } from "@/components/ui/SocialLinks";
+import { inquiryTypes, site } from "@/lib/site";
 
 export function Contact() {
   const [status, setStatus] = useState("");
-  const links = socialLinks();
-
-  const iconFor = (label: string) => {
-    switch (label) {
-      case "Email":
-        return "mail";
-      case "GitHub":
-        return "github";
-      case "LinkedIn":
-        return "linkedin";
-      case "Resume":
-        return "resume";
-      default:
-        return "resume";
-    }
-  };
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -49,18 +33,53 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 border-t border-line py-12">
-      <SectionHeading
-        kicker="Get in touch"
-        title="Let’s build something that holds up in production."
-      />
+    <section id="contact" className="py-10">
+      <div className="grid min-h-[calc(100dvh-12rem)] items-center gap-12 lg:grid-cols-[minmax(0,18rem)_1fr] lg:gap-16">
+        <div className="mx-auto w-full max-w-xs text-center lg:mx-0 lg:text-left">
+          <div className="relative mx-auto mb-6 h-52 w-52 lg:mx-0 lg:h-60 lg:w-60">
+            <div
+              aria-hidden="true"
+              className="absolute -right-2 -bottom-3 h-[90%] w-[90%] rounded-full bg-acc"
+            />
+            <div className="relative h-full w-full overflow-hidden rounded-full border border-line bg-bg2">
+              <Image
+                src={site.portrait}
+                alt={site.name}
+                fill
+                sizes="240px"
+                className="object-cover object-[center_18%]"
+                priority
+              />
+            </div>
+          </div>
+          <p className="mb-2 font-serif text-3xl">{site.name}</p>
+          <p className="mb-6 font-mono text-[13px] tracking-wider text-mut uppercase">
+            {site.location}
+          </p>
+          <SocialLinks className="justify-center lg:justify-start" />
+        </div>
 
-      <p className="mb-10 max-w-2xl text-[22px] leading-relaxed text-mut">
-        Have a product, internal tool, or storefront in mind? Send a short note
-        and I will get back to you.
-      </p>
+        <div>
+          <h1 className="font-serif text-[clamp(52px,9vw,108px)] leading-[0.86] tracking-tight">
+            Get in touch
+          </h1>
+          <p className="mt-4 font-serif text-[clamp(32px,4vw,48px)] leading-tight">
+            Thank you.
+          </p>
+          <a
+            href={`mailto:${site.email}`}
+            className="mt-6 inline-block font-mono text-[18px] tracking-wide text-acc underline-offset-4 hover:underline"
+          >
+            {site.email}
+          </a>
+          <p className="mt-8 max-w-xl text-[21px] leading-relaxed text-mut">
+            Have a product, internal tool, or storefront in mind? Send a short
+            note and I will get back to you.
+          </p>
+        </div>
+      </div>
 
-      <form onSubmit={onSubmit} className="mb-12 grid max-w-2xl gap-5">
+      <form onSubmit={onSubmit} className="mt-6 mb-8 grid max-w-2xl gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <label className="block">
             <span className="mb-2 block font-mono text-[15px] tracking-wider text-mut uppercase">
@@ -133,38 +152,6 @@ export function Contact() {
           </p>
         ) : null}
       </form>
-
-      <div>
-        <p className="mb-4 font-mono text-[15px] tracking-wider text-mut uppercase">
-          Or connect directly
-        </p>
-        {links.length > 0 ? (
-          <div className="flex flex-wrap gap-5 font-mono text-[17px]">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                {...(link.href.startsWith("http")
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className={
-                  link.label === "Email"
-                    ? "inline-flex items-center gap-2 border-b border-acc pb-0.5 text-acc"
-                    : "inline-flex items-center gap-2 text-mut hover:text-acc"
-                }
-              >
-                <SocialIcon kind={iconFor(link.label)} />
-                <span>{link.label}</span>
-                {link.href.startsWith("http") ? <ArrowUpRight /> : null}
-              </a>
-            ))}
-          </div>
-        ) : (
-          <p className="font-mono text-[17px] text-mut">
-            Email · GitHub · LinkedIn. Send the URLs and I’ll wire them in.
-          </p>
-        )}
-      </div>
     </section>
   );
 }

@@ -3,7 +3,7 @@ import { certifications, education } from "@/lib/site";
 
 export function Education() {
   return (
-    <section id="education" className="scroll-mt-24 border-t border-line py-12">
+    <section id="education" className="scroll-mt-24 py-12">
       <SectionHeading kicker="Background" title="Education & certifications" />
 
       <div className="grid gap-12 md:grid-cols-2">

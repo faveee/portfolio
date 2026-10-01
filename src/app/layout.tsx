@@ -22,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="dark"
+      suppressHydrationWarning
       className={`${instrumentSans.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
     >
       <head>

@@ -1,10 +1,14 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { nav, site } from "@/lib/site";
 
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
@@ -15,6 +19,10 @@ export function Header() {
     document.documentElement.setAttribute("data-theme", initial);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   function toggleTheme() {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
@@ -22,36 +30,45 @@ export function Header() {
     window.localStorage.setItem("fa-theme", next);
   }
 
-  function close() {
-    setOpen(false);
-  }
-
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
-      <div className="flex items-center justify-between gap-4 px-6 py-3.5 sm:px-10">
-        <a
-          href="#top"
-          className="flex items-center gap-2.5 font-mono text-base font-semibold tracking-wide"
+      <div className="mx-auto grid max-w-[72rem] grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-3 sm:px-10">
+        <Link
+          href="/"
+          className="relative block h-9 w-9 overflow-hidden rounded-full border border-line"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-line bg-bg2 text-[10px] text-acc">
-            {site.monogram}
-          </span>
-          favour<span className="text-acc">/</span>portfolio
-        </a>
+          <Image
+            src={site.portrait}
+            alt={site.name}
+            fill
+            sizes="36px"
+            className="object-cover object-[center_18%]"
+            priority
+          />
+        </Link>
 
-        <nav className="hidden items-center gap-7 font-mono text-base tracking-wider uppercase md:flex">
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-fg transition-colors hover:text-acc"
-            >
-              {item.label}
-            </a>
-          ))}
+        <nav className="hidden md:block">
+          <div className="inline-flex rounded-full border border-line bg-bg2 p-1">
+            {nav.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={
+                    active
+                      ? "rounded-full bg-acc px-4 py-1.5 font-mono text-sm tracking-wider text-bg uppercase"
+                      : "rounded-full px-4 py-1.5 font-mono text-sm tracking-wider text-fg uppercase transition-colors hover:text-acc"
+                  }
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
         </nav>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center justify-end gap-2.5">
           <button
             type="button"
             title="Toggle theme"
@@ -75,16 +92,22 @@ export function Header() {
 
       {open ? (
         <nav className="flex flex-col gap-4 border-t border-line px-6 py-4 font-mono text-base tracking-wider uppercase md:hidden">
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={close}
-              className="text-fg transition-colors hover:text-acc"
-            >
-              {item.label}
-            </a>
-          ))}
+          {nav.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={
+                  active
+                    ? "text-acc"
+                    : "text-fg transition-colors hover:text-acc"
+                }
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
       ) : null}
     </header>
