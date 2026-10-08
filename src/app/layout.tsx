@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: `%s - ${site.name}`,
   },
   description: site.summary,
-};
+}
 
 const themeScript = `(function(){try{var t=localStorage.getItem('fa-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`;
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import { TechIcon, type TechId } from "@/components/ui/TechIcons";
-import { education, experience, site, stackTools } from "@/lib/site";
+// import { TechIcon, type TechId } from "@/components/ui/TechIcons";
+import { education, experience, site } from "@/lib/site";
 
 export function AboutHero() {
   return (
@@ -47,6 +47,7 @@ export function AboutHero() {
             {site.summary}
           </p>
 
+          {/*
           <p className="mb-3 font-mono text-[13px] tracking-[0.28em] text-acc uppercase">
             Skills
           </p>
@@ -62,6 +63,7 @@ export function AboutHero() {
               </li>
             ))}
           </ul>
+          */}
 
           <div className="grid gap-8 sm:grid-cols-2">
             <div>

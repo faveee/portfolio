@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { nav, site } from "@/lib/site";
+import { nav } from "@/lib/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -33,19 +32,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
       <div className="mx-auto grid max-w-[72rem] grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-3 sm:px-10">
-        <Link
-          href="/"
-          className="relative block h-9 w-9 overflow-hidden rounded-full border border-line"
-        >
-          <Image
-            src={site.portrait}
-            alt={site.name}
-            fill
-            sizes="36px"
-            className="object-cover object-[center_18%]"
-            priority
-          />
-        </Link>
+        <div />
 
         <nav className="hidden md:block">
           <div className="inline-flex rounded-full border border-line bg-bg2 p-1">
